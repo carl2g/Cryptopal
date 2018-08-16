@@ -1,0 +1,13 @@
+#!/bin/ruby
+require '../../utils/utils'
+
+base64 	= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+hex 	= "0123456789abcdef"
+
+res = ""
+ARGV[0].split('').each do |elem|
+	res += conv_dec_bin(find_pos(elem, hex), "0000")
+end
+
+# puts conv_bin_dec(ARGV[0])
+puts conv_bin_base(res, base64)

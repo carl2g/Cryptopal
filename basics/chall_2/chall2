@@ -1,0 +1,9 @@
+#!/bin/ruby
+require '../../utils/utils'
+
+hex 	= "0123456789abcdef"
+
+str1 = conv_base_bin(ARGV[0], hex)
+str2 = conv_base_bin(ARGV[1], hex)
+
+puts conv_bin_base(xor(str1, str2), hex)

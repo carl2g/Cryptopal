@@ -1,0 +1,29 @@
+#!/bin/ruby
+require '../../utils/utils'
+
+hex 	= "0123456789abcdef"
+
+str1 = conv_base_bin(ARGV[0], hex)
+# puts str1
+
+# arr = {}
+res = ""
+str1.scan(/.{8}/).each do |oct|
+	# dec = conv_bin_dec(oct)
+	# if arr[dec]
+	# 	arr[dec] += 1
+	# else
+	# 	arr.store(dec, 1)
+	# end
+	# puts oct
+	res += (conv_bin_dec(oct) ^ 88).chr
+end
+puts res
+
+# puts ' '.ord
+# # puts (120 ^ 17).chr
+# puts conv_bin_dec("01111000")
+# puts conv_bin_dec("01011000")
+# puts conv_bin_dec("00100000")
+
+# puts arr

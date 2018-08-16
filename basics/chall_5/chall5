@@ -1,0 +1,28 @@
+#!/bin/ruby
+
+require '../../utils/utils'
+
+hex 	= "0123456789abcdef"
+base64 	= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+
+arr = []
+File.open(ARGV[0], "r") do |infile|
+    while (line = infile.gets)
+        arr += [line]
+    end
+end
+
+KEY = 'ICE'
+LEN = KEY.length
+i = 0
+
+arr.each do |str|
+	bin = ""
+	str.split('').each do |c|
+		bin += conv_dec_bin(c.ord ^ KEY[i % LEN].ord, "0" * 8)
+		i += 1
+	end
+	puts conv_bin_base(bin, hex)
+	# puts conv_bin_base(bin, base64)
+
+end

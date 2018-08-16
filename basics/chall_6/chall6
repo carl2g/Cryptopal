@@ -1,0 +1,70 @@
+#!/bin/ruby
+
+require '../../utils/utils'
+
+base64 	= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+hex 	= "0123456789abcdef"
+
+str_base64 = ""
+File.open(ARGV[0], "r") do |infile|
+    while (line = infile.gets)
+        str_base64 += line.chomp
+    end
+end
+
+bin_str = conv_base_bin(str_base64, base64)
+# bin_str = conv_str_to_bin(str_base64)
+potential_key_size = get_key_size(bin_str, FR_FREQ, 16)
+puts potential_key_size
+# first_seq = ""
+# second_seq = ""
+# key_s = {}
+
+# (2..40).each do |keysize|
+# 	bin_str.scan(/.{#{keysize * 8}}/).each_with_index do |bytes, i|
+# 		if i == 0
+# 			first_seq = bytes
+# 		elsif i == 1
+# 			second_seq = bytes
+# 		else
+# 			break
+# 		end
+# 	end
+# 	tmp = calc_hamming_dist(first_seq, second_seq) / keysize.to_f
+# 	key_s.store(keysize, tmp)
+# end
+
+# potential_key_size = key_s.sort_by  { |k, v| v }.first(5)
+# puts "KEYSIZE in BITE == #{potential_key_size}"
+
+# potential_key_size.each do |k_size, val|
+# 	arr = {}
+# 	bin_str.scan(/.{#{k_size * 8}}/).each do |nb_b|
+# 		nb_b.scan(/.{8}/).each_with_index do |byte, i|
+# 			if arr[i]
+# 				arr[i] += byte
+# 			else
+# 				arr.store(i, byte)
+# 			end
+# 		end
+# 	end
+# 	h_res = {}
+# 	# puts arr
+# 	arr.each do |key_l, bin_str|
+# 		tmp_res = ""
+# 		find_key_and_xor(bin_str, 10)
+# 	end
+# end
+
+# # KEY = "u nhd"
+# # LEN = KEY.length
+# # i = 0
+
+# # arr.each do |str|
+# # 	bin = ""
+# # 	str.split('').each do |c|
+# # 		bin += conv_dec_bin(c.ord ^ KEY[i % LEN].ord, "0" * 8)
+# # 		i += 1
+# # 	end
+# # 	puts conv_bin_str(bin)
+# # end

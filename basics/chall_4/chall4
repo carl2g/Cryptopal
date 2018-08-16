@@ -1,0 +1,16 @@
+#!/bin/ruby
+require '../../utils/utils'
+
+hex 	= "0123456789abcdef"
+
+arr = []
+File.open("chall_file", "r") do |infile|
+    while (line = infile.gets)
+        arr += [line.chomp]
+    end
+end
+
+arr.each do |str|
+	bin_str = conv_base_bin(str, hex)
+	find_key_and_xor(bin_str, 1)
+end
